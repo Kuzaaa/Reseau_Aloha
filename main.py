@@ -101,6 +101,21 @@ while(not(ok)):
             print("Veuillez entrer un nombre superieur a 0 :")
     except:
         print("Veuillez entrer un nombre :")
+        
+#On demande le nombre d'envoi a effectuer
+ok = 0 #false -> not ok
+while(not(ok)):
+    print("Combien d'envoi ?")
+    nb_send = input()
+    
+    try:
+        nb_send = int(nb_send)
+        if(nb_send >= 1):
+            ok = 1
+        else:
+            print("Veuillez entrer un nombre superieur a 0 :")
+    except:
+        print("Veuillez entrer un nombre :")
 
 #Tableau des equipements
 tabEquip = []
@@ -110,7 +125,7 @@ for i in range(nb_equip):
     tabEquip.append(Equipement(i+1, dist_max))
     
 #Print de test du dernier equipement cree
-print(tabEquip[nb_equip-1].affiche())
+#print(tabEquip[nb_equip-1].affiche())
 
 dict_sf = {}
 dict_sf[-1] = 0
@@ -124,12 +139,12 @@ dict_sf[12] = 0
 for i in range(len(tabEquip)):
     dict_sf[tabEquip[i].get_sf()] += 1
     
-print(dict_sf)
+#print(dict_sf)
 
 for i in range(len(tabEquip)):
     tabEquip[i].proba_coll()
 
-for i in range(len(tabEquip)):
-    tabEquip[i].send(tabEquip[(i+1)%nb_equip])
+for i in range(nb_send):
+    tabEquip[random.randrange(nb_equip)].send(tabEquip[random.randrange(nb_equip)])
     
 print(dict_coll)
