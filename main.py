@@ -52,12 +52,10 @@ class Equipement():
         global dict_coll
         if(self.sf_min == equip.sf_min):
             test = random.uniform(0, 1)
-            if(test < self.P):
+            while(test < self.P):
                 #print("collision")
                 dict_coll[self.sf_min] += 1
-            else:
-                #print("pas collision")
-                pass
+                test = random.uniform(0, 1)
 
 ###############################################################################
 #                                     MAIN                                    #
@@ -145,6 +143,7 @@ for i in range(len(tabEquip)):
     tabEquip[i].proba_coll()
 
 for i in range(nb_send):
+    #print(i)
     tabEquip[random.randrange(nb_equip)].send(tabEquip[random.randrange(nb_equip)])
     
 print(dict_coll)
