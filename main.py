@@ -45,6 +45,7 @@ class Equipement():
     
     def proba_coll(self):
         self.P = 1 - (math.exp(-2 * (1/240) * dict_sf[self.sf_min] * self.T))
+        #print(self.P)
     
     def send(self, equip):
         if(self.sf_min == -1):
@@ -144,6 +145,19 @@ for i in range(len(tabEquip)):
 
 for i in range(nb_send):
     #print(i)
-    tabEquip[random.randrange(nb_equip)].send(tabEquip[random.randrange(nb_equip)])
+    sender = random.randrange(nb_equip)
+    target = random.randrange(nb_equip)
     
+    while(tabEquip[sender].sf_min == -1):
+        sender = random.randrange(nb_equip)
+        
+    while(tabEquip[target].sf_min == -1):
+        target = random.randrange(nb_equip)
+    
+    tabEquip[sender].send(tabEquip[target])
+
 print(dict_coll)
+    
+total = dict_coll[7] + dict_coll[8] + dict_coll[9] + dict_coll[10] + dict_coll[11] + dict_coll[12] + nb_send
+
+print(nb_send / total)
