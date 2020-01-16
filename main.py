@@ -147,3 +147,9 @@ for i in range(nb_send):
     tabEquip[random.randrange(nb_equip)].send(tabEquip[random.randrange(nb_equip)])
     
 print(dict_coll)
+
+nb_coll = 0
+for coll in dict_coll:
+    nb_coll += coll
+
+print("Taux de paquets reçus = ",nb_send/(nb_send + nb_coll))
