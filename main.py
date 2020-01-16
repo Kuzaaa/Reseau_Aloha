@@ -149,7 +149,7 @@ for i in range(nb_send):
 print(dict_coll)
 
 nb_coll = 0
-for coll in dict_coll:
+for coll in dict_coll.values():
     nb_coll += coll
 
 print("Taux de paquets reçus = ",nb_send/(nb_send + nb_coll))
