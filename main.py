@@ -157,7 +157,10 @@ for i in range(nb_send):
     tabEquip[sender].send(tabEquip[target])
 
 print(dict_coll)
-    
-total = dict_coll[7] + dict_coll[8] + dict_coll[9] + dict_coll[10] + dict_coll[11] + dict_coll[12] + nb_send
 
-print(nb_send / total)
+nb_coll = 0
+for coll in dict_coll.values():
+    nb_coll += coll
+
+print("Taux de paquets reçus = ",nb_send/(nb_send + nb_coll))
+
