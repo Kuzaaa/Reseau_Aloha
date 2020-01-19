@@ -8,13 +8,13 @@ import random
 import math
 
 ###############################################################################
-#                                CLASS EQUIPEMENT                             #
+#                               CLASSE EQUIPEMENT                             #
 ###############################################################################
 
 class Equipement():
     
     def __init__(self, num, dist_max):
-        #Distance de l'equipement choisit aleatoirement entre 0 et la distance max
+        #Distance de l'equipement choisie aleatoirement entre 0 et la distance max
         self.distance = random.randrange(dist_max)
         self.id = num
         #Calcule du ratio, determine le sf de l'equipement
@@ -48,7 +48,7 @@ class Equipement():
     #Envoi d'un paquet    
     def send(self, equip):
         if(self.sf_min == -1):
-            print("Cette equipement n'a pas de sf disponible.")
+            print("Cet equipement n'a pas de sf disponible.")
         global dict_coll
         if(self.sf_min == equip.sf_min):
             #Tire aleatoirement un chiffre entre 0 et 1
@@ -142,18 +142,18 @@ dict_sf[12] = 0
 for i in range(len(tabEquip)):
     dict_sf[tabEquip[i].get_sf()] += 1
     
-#Calcule de la probabilite de collision pour chaque équipement
+#Calcul de la probabilite de collision pour chaque équipement
 for i in range(len(tabEquip)):
     tabEquip[i].proba_coll()
 
 #Envoi des paquets
 for i in range(nb_send):
-    #Selection de l'emetteur et du receveur aleatoire
+    #Selection de l'emetteur et du recepteur aleatoire
     sender = random.randrange(nb_equip)
     target = random.randrange(nb_equip)
     
     #Tant que l'un des deux n'a pas de sf (-1) on retire l'emetteur
-    #Peut être une boucle infini si par malchance l'on a que des equipements sans sf
+    #Peut être une boucle infini si par malchance on a que des equipements sans sf
     while(tabEquip[sender].sf_min == -1):
         sender = random.randrange(nb_equip)
         
@@ -164,9 +164,10 @@ for i in range(nb_send):
     tabEquip[sender].send(tabEquip[target])
 
 #Affiche le dictionnaire de collision
+print("Nombre de collisions par SF:")
 print(dict_coll)
 
-#Calcule du taux de reussite
+#Calcul du taux de reussite
 nb_coll = 0
 for coll in dict_coll.values():
     nb_coll += coll
