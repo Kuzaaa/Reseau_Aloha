@@ -15,7 +15,7 @@ class Equipement():
     
     def __init__(self, num, dist_max):
         #Distance de l'equipement choisie aleatoirement entre 0 et la distance max
-        self.distance = random.randrange(dist_max)
+        self.distance = random.uniform(0,dist_max)
         self.id = num
         #Calcule du ratio, determine le sf de l'equipement
         ratio = self.distance / dist_max
